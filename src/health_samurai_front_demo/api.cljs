@@ -10,7 +10,7 @@
 
 (defn get-all-patients []
   (GET "http://localhost:3000/patients"
-       {:handler handler
-        :error-handler error-handler
-        :response-format :json
-        :keywords? true}))
+    {:handler handler
+     :error-handler error-handler
+     :response-format :json
+     :keywords? true}))
