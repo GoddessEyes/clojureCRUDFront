@@ -9,12 +9,19 @@
   (:result @response))
 
 (defn patients []
-  [:div [:ul
-         (let [patient-result (get-result state/patients)]
-           (for [patient patient-result]
-             [:li (str "Id : " (:id patient) " | Full Name: " (:full_name patient))]))
+  [:div
+   [:table {:style {:border "1px solid"}}
+    (let [patient-result (get-result state/patients)]
+      (for [patient patient-result]
+        [:tr
+         [:td (:id patient)]
+         [:td (:full_name patient)]
+         [:td (:date_birth patient)]
+         [:td (:address patient)]
+         [:td (:oms patient)]
+         [:td (:gender patient)]]))]
 
-         [:input {:type "button" :value "Reload!" :style {:margin-top "5%"}
-                  :on-click #(swap! state/patients (get-all-patients))}]
-         [:input {:type "button" :value "Reset!" :style {:margin-left "5%"}
-                  :on-click #(reset! state/patients {})}]]])
+   [:input
+    {:type "button" :value "Reload!" :style {:margin-top "5%"} :on-click #(swap! state/patients (get-all-patients))}]
+   [:input
+    {:type "button" :value "Reset!" :style {:margin-left "5%"} :on-click #(reset! state/patients {})}]])
