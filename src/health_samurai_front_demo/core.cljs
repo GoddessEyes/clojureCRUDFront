@@ -2,12 +2,14 @@
   (:require
    [reagent.dom :as d]
    [health-samurai-front-demo.api :as api]
-   [health-samurai-front-demo.components.main :refer [header patients]]))
+   [health-samurai-front-demo.components.main :refer [header patients]]
+   [health-samurai-front-demo.components.create-component :refer [create-patient-component]]))
 
 (defn app []
-  [:div.container
+  [:div
    [header]
-   [patients]])
+   [patients]
+   [create-patient-component]])
 
 (defn mount-root []
   (api/get-all-patients)
