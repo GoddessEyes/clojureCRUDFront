@@ -1,6 +1,7 @@
 (ns health-samurai-front-demo.components.main
   (:require [health-samurai-front-demo.state :as state]
-            [health-samurai-front-demo.api :refer [get-all-patients delete-patient-by-id]]))
+            [health-samurai-front-demo.api :refer [get-all-patients delete-patient-by-id]]
+            [health-samurai-front-demo.components.update-component :refer [render-updating-form-and-set-state]]))
 
 (defn header []
   [:header {:style {:margin-bottom "5%"}} "Health Samurai Demo"])
@@ -27,7 +28,8 @@
          [:td (:address patient)]
          [:td (:oms patient)]
          [:td (:gender patient)]
-         [:td [:button.destroy {:value "Delete" :type "button" :on-click #(delete-patient-by-id (:id patient))} "Delete"]]]))]
+         [:td [:button.destroy {:value "Delete" :type "button" :on-click #(delete-patient-by-id (:id patient))} "Delete"]]
+         [:td [:button.update {:value "update" :type "button" :on-click #(render-updating-form-and-set-state (:id patient))} "Edit"]]]))]
 
    [:div {:style {:display "block" :margin-top "5%"}} [:input
                                                        {:type "button" :value "Reload!" :style {:margin-right "5%"}  :on-click #(swap! state/patients (get-all-patients))}]

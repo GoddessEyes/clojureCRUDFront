@@ -2,3 +2,4 @@
   (:require [reagent.core :as r]))
 
 (def patients (r/atom {}))
+(def patient (r/atom {}))
