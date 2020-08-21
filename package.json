@@ -1,0 +1,23 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "To start the Figwheel compiler, navigate to the project folder and run the following command in the terminal:",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoddessEyes/HealthSamuriaDemoFront.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GoddessEyes/HealthSamuriaDemoFront/issues"
+  },
+  "homepage": "https://github.com/GoddessEyes/HealthSamuriaDemoFront#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
