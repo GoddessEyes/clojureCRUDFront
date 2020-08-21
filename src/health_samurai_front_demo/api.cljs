@@ -1,6 +1,7 @@
 (ns health-samurai-front-demo.api
   (:require [ajax.core :refer [GET DELETE POST PATCH]]
-            [health-samurai-front-demo.state :refer [patients patient]]))
+            [health-samurai-front-demo.state :refer [patients patient]]
+            [health-samurai-front-demo.config :refer [api-root-url]]))
 
 (defn error-handler [{:keys [status status-text]}]
   (.log js/console (str "something bad happened: " status " " status-text)))
@@ -12,7 +13,7 @@
   (reset! patient (first (:result response))))
 
 (defn update-patient-by-id [patient-id update-schema]
-  (PATCH (str "http://localhost:3000/update_patients/" patient-id)
+  (PATCH (str api-root-url "/update_patients/" patient-id)
     {:handler (defn a [x] (prn x))
      :error-handler error-handler
      :params {:full_name (get update-schema "full_name")
@@ -24,7 +25,7 @@
      :keywords? true}))
 
 (defn get-all-patients []
-  (GET "http://localhost:3000/patients"
+  (GET (str api-root-url "/patients")
     {:handler get-all-patients-handler
      :error-handler error-handler
      :response-format :json
@@ -34,14 +35,14 @@
   (get-all-patients))
 
 (defn get-patient-by-id [patient-id]
-  (GET (str "http://localhost:3000/patients/" patient-id)
+  (GET (str api-root-url "/patients/" patient-id)
     {:handler get-patient-handler
      :error-handler error-handler
      :response-format :json
      :keywords? true}))
 
 (defn delete-patient-by-id [id]
-  (DELETE "http://localhost:3000/delete_patients"
+  (DELETE (str api-root-url "/delete_patients")
     {:handler refetch-patients
      :params {:id id}
      :error-handler error-handler
@@ -49,7 +50,7 @@
      :keywords? true}))
 
 (defn create-patient [patient]
-  (POST "http://localhost:3000/create_patients"
+  (POST (str api-root-url "/create_patients")
     {:handler refetch-patients
      :params {:full_name (get patient "full_name")
               :date_birth (get patient "date_birth")
