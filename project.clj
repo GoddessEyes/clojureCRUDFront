@@ -11,6 +11,7 @@
                  [cljs-http "0.1.46"]
                  [cljs-ajax "0.8.0"]
                  [fork "2.1.0"]]
+  :main health-samurai-front-demo.core
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.20"]
